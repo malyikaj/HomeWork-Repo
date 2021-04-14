@@ -1,3 +1,16 @@
+let num = [1,14,56,2,43,67];
+
+let newnum = num.length;
+// for( ) {
+
+// }
+
+
+console.log(newnum);
+
+
+
+
 
 // substring()
 // substr()
