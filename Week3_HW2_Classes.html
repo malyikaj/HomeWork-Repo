@@ -1,0 +1,103 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div>
+        <p id="circle"></p><br>
+        <p id="rectangle"></p><br>
+        <p id="square"></p><br>
+    </div>
+   
+
+<script>
+
+let circleText = "" 
+
+class Circle {
+
+    constructor(radius) {
+        this.radius = radius
+    }
+
+    circle(){
+        let area = Math.PI * (Math.pow(34, 2))
+        circleText = circleText + "Circle area: " + area + "<br>";
+       
+    }
+
+    total(){
+        let perimeter = 2 * Math.PI * this.radius
+        circleText = circleText + "Circle circumference: " + perimeter;
+       
+    }
+}
+
+const circle1 = new Circle(4)
+circle1.circle();
+circle1.total();
+
+document.getElementById("circle").innerHTML = circleText
+
+let recText = ""
+class Rectangle {
+    constructor(length, width) {
+        this.length = length
+        this.width = width
+    }
+
+    rectangle(){
+        let area = this.length * this.width
+        recText = recText + "Retangle area: " + area + "<br>";
+      
+    }
+
+    total(){
+        let perimeter = (this.length + this.width) * 2
+        recText = recText + "Perimeter of this rectangle is: " + perimeter;
+       
+    }
+}
+const rec = new Rectangle(8, 9)
+rec.rectangle();
+rec.total();
+document.getElementById("rectangle").innerHTML = recText
+
+
+
+let sqText = ""
+class Square {
+    constructor(side) {
+        this.side = side
+
+    }
+
+    square(){
+        let area = this.side * this.side
+        sqText = sqText + "The area of square: " + area + "<br>";
+        
+    }
+
+    total(){
+        let perimeter = 4 * this.side
+        sqText = sqText + "The perimeter of square: " + perimeter;
+        
+    }
+}
+const sq1 = new Square(7)
+sq1.square();
+sq1.total();
+document.getElementById("square").innerHTML = sqText
+
+
+</script>
+</body>
+</html>
+ 
+
+ 
