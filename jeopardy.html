@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground</title>
+    <link rel="stylesheet" href="style.css">
+<style>
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
+
+  .board {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    width: 100%;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+  }
+  .board .row {
+    -webkit-box-flex: 1;
+            flex: 1;
+    position: relative;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+            justify-content: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row;
+  }
+  .board .row .tile {
+    color: #ddd;
+    top: 0;
+    bottom: 0;
+    -webkit-box-flex: 1;
+            flex: 1;
+    width: 100%;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+            align-items: center;
+    font-size: 3.5vw;
+    font-family: impact;
+    background: -webkit-gradient(linear, right bottom, left top, from(#000088), to(#0000ff));
+    background: linear-gradient(to top left, #000088, #0000ff);
+    border: 3px solid #000;
+    
+  }
+  .board .row .question-value {
+    display: block;
+  }
+  .board .row .question-answer {
+    display: none;
+  }
+  .board .row .tile.active {
+    
+    border-width: 0;
+    font-size: 10vw;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    z-index: 5;
+  }
+  .board .row .tile.active .question-value {
+    display: none;
+  }
+  .board .row .tile.active .question-answer {
+    display: block;
+  }
+
+.tile:hover {
+ 
+}
+
+.board .row .tile:hover {
+  color: yellow;
+  transform: scale(1.1); 
+}
+</style>  
+</head>
+<body>
+    <!-- JEOPARDY BOARD  -->
+<div>
+    <div class="board">
+      <div class="row categories">
+        <div class="tile">JAVASCRIPT</div>
+        <div class="tile">HTML</div>
+        <div class="tile">CSS</div>
+        <div class="tile">EVENTS</div>
+        <div class="tile">OOP</div>
+      </div>
+      <div class="row clues" id= "tile-select">
+        <div class="tile"> 
+          <div class="question-value">$100</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+        <div class="tile" id= "tile-select">
+          <div class="question-value">$100</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+        <div class="tile" id= "tile-select">
+          <div class="question-value">$100</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+        <div class="tile" id= "tile-select">
+          <div class="question-value">$100</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+        <div class="tile" id= "tile-select">
+          <div class="question-value">$100</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+      </div>
+      <div class="row clues">
+        <div class="tile"> 
+          <div class="question-value">$200</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+        <div class="tile">
+          <div class="question-value">$200</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+        <div class="tile">
+          <div class="question-value">$200</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+        <div class="tile">
+          <div class="question-value">$200</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+        <div class="tile">
+          <div class="question-value">$200</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+      </div>
+      <div class="row clues">
+        <div class="tile" onclick="toggleActive(this)"> 
+          <div class="question-value">$300</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+        <div class="tile" onclick="toggleActive(this)">
+          <div class="question-value">$300</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+        <div class="tile" onclick="toggleActive(this)">
+          <div class="question-value">$300</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+        <div class="tile" onclick="toggleActive(this)">
+          <div class="question-value">$300</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+        <div class="tile" onclick="toggleActive(this)">
+          <div class="question-value">$300</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+      </div>
+      <div class="row clues">
+        <div class="tile" onclick="toggleActive(this)"> 
+          <div class="question-value">$400</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+        <div class="tile" onclick="toggleActive(this)">
+          <div class="question-value">$400</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+        <div class="tile" onclick="toggleActive(this)">
+          <div class="question-value">$400</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+        <div class="tile" onclick="toggleActive(this)">
+          <div class="question-value">$400</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+        <div class="tile" onclick="toggleActive(this)">
+          <div class="question-value">$400</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+      </div>
+      <div class="row clues">
+        <div class="tile" onclick="toggleActive(this)"> 
+          <div class="question-value">$500</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+        <div class="tile" onclick="toggleActive(this)">
+          <div class="question-value">$500</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+        <div class="tile" onclick="toggleActive(this)">
+          <div class="question-value">$500</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+        <div class="tile" onclick="toggleActive(this)">
+          <div class="question-value">$500</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+        <div class="tile" onclick="toggleActive(this)">
+          <div class="question-value">$500</div>
+          <div class="question-answer">This is the answer.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- SCORECARD -->
+<div id="scorecard">
+  <div id="team1">
+    TEAM 1
+    <h1 class="score1"></h1>
+    <button class="increment1">+</button>
+    <button class="decrement1">-</button>
+  </div>
+  <div id="team2">
+    TEAM 2
+    <h1 class="score2"></h1>
+    <button class="increment2">+</button>
+    <button class="decrement2">-</button>
+  </div>
+  <div id="team3">
+    TEAM 3
+    <h1 class="score3"></h1>
+    <button class="increment3">+</button>
+    <button class="decrement3">-</button>
+  </div>
+</div>
+  <script>
+   // const $tiles = $('.tile').on('click', (event)=>{
+   //   $(event.currentTarget).toggleClass('active')  
+   // })
+
+const tiles = document.getElementsByClassName("tile")
+
+for (let i = 0; i < tiles.length; i++) {
+
+  tiles[i].addEventListener('click', (event) => {
+
+    let classes = event.target.classList
+  
+    if (classes.contains('active'))
+      event.target.classList.remove('active')
+    else 
+      event.target.classList.add('active')
+
+  })
+}
+
+
+const toggleActive = () => {
+  console.log('toggleactive')
+}
+
+class Team {
+  constructor(name, element){
+      this.name = name;
+      this.score = 0;
+      //lets assign the element to each Team instance
+      this.element = element;
+  }
+  //what does the score board do?
+  //it increases the score based on pointvalue
+  increaseScore(pointValue){
+   // this.score = this.score + pointValue;
+
+   this.score += pointValue;
+   this.element.children[0].innerText = this.score
+   console.log(pointValue)
+  }
+
+  decreaseScore(pointValue){
+      this.score -= pointValue;
+      this.element.children[0].innerText = this.score
+  }
+
+  setup(){
+      //select your 2nd child because thats your btn
+      console.log(this.element.children[1])
+      this.element.children[1].addEventListener('click', () => {
+          this.increaseScore(100)
+      })
+      
+      this.element.children[2].addEventListener('click', () => {
+          this.decreaseScore(100)
+      })
+      //remember to call these methods when you instantiate the class
+      return this;
+  }
+
+}
+
+
+  const team1 = new Team('team1', document.getElementById('team1'))
+  const team2 = new Team('team2', document.getElementById('team2'))
+  const team3 = new Team('team3', document.getElementById('team3'))
+  
+  team1.setup()
+  team2.setup()
+  team3.setup()
+  
+  console.log(team1.element)
+  </script>  
+</body>
+</html>
