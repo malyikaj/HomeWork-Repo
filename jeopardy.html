@@ -10,6 +10,13 @@
     box-sizing: border-box;
   }
 
+  #scorecard{
+    width: 100%;
+    display: flex;
+    position: relative;
+    justify-content: space-evenly;
+    background-color: blue;
+  }
   .board {
     position: absolute;
     top: 0px;
@@ -209,12 +216,8 @@
           <div class="question-value">$500</div>
           <div class="question-answer">This is the answer.</div>
         </div>
-      </div>
-    </div>
-  </div>
-
-<!-- SCORECARD -->
-<div id="scorecard">
+      </div> 
+      <div id="scorecard">
   <div id="team1">
     TEAM 1
     <h1 class="score1"></h1>
@@ -234,6 +237,11 @@
     <button class="decrement3">-</button>
   </div>
 </div>
+    </div>
+  </div>
+
+<!-- SCORECARD -->
+
   <script>
    // const $tiles = $('.tile').on('click', (event)=>{
    //   $(event.currentTarget).toggleClass('active')  

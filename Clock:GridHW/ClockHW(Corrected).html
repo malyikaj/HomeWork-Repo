@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="clock.css">
+   <style>
+#control {
+  text-align: center; 
+}
+
+#clock {
+  box-shadow: 3px 5px 3px grey;
+  
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.input {
+  border: none;
+  background-color: #0781D4;
+  font-size: 27px; 
+  width: 20%;
+}
+
+.blue {
+  background-color: #0781D4;
+}
+
+.red {
+  background-color: red;
+}
+   </style> 
+  </head>
+  <body>
+    <script>
+      function sumbitHere() {
+        const limitForMin = parseInt(document.getElementsByClassName("input")[0].value);
+        const secLimit = parseInt(document.getElementsByClassName("input")[1].value);
+
+        if (limitForMin || secLimit) {
+          document.getElementById("txtTempo").value = limitForMin + secLimit / 60;
+        }
+      }
+    </script>
+    <div id="container">
+      <div id="control">
+        <input id="txtTempo" type="text" value="10" size="4" maxlength="4">
+        <button id="btnStart" onclick="sumbitHere()">Start</button>
+      </div>
+
+      <div id="clock" class="blue">
+        <input type="text" class="input" id="minutes" value="00" /> : 
+        <input type="text" class="input" id="seconds" value="00" />
+      </div>
+    </div>
+    
+    <script>
+      let enterMin = document.getElementById("minutes")
+      enterMin.addEventListener("keyup", (e) => {
+        e.preventDefault();
+        if (e.key === "Enter") {
+          document.getElementById("seconds").focus();
+        }
+      })
+
+      let enterSec = document.getElementById("seconds")
+      enterSec.addEventListener("keyup", (e) => {
+        const limitForMin = parseInt(document.getElementsByClassName("input")[0].value);
+        const secLimit = parseInt(document.getElementsByClassName("input")[1].value);
+
+        e.preventDefault();
+        if (e.key === "Enter") {
+          if (!limitForMin) {
+            document.getElementById("txtTempo").value = secLimit / 60;
+          } else if (!secLimit) {
+            document.getElementById("txtTempo").value = limitForMin;
+          } else {
+            document.getElementById("txtTempo").value = limitForMin + secLimit / 60;
+          }
+        }
+      })
+      window.addEventListener('DOMContentLoaded', documentLoaded, false);
+
+var startTime;
+var limite;
+var temporizador;
+let enter = document.getElementsByTagName("html")[0];
+enter.addEventListener("keyup", (e) => {
+  e.preventDefault();
+  if (e.target.id === "minutes") {
+    return;
+  } 
+  if (e.key === "Enter") {
+    botaoClicked();
+  }
+})
+
+
+function documentLoaded() {
+  "use strict";
+
+  // listen for mouse clicks on the button
+  document.getElementById("btnStart").addEventListener("click", botaoClicked, false);
+
+  console.log("Documento carregado");
+}
+
+// when we click on the button, we save the current time, and the time limit. We then
+// create a timer to execute the "updateTime" function once a second.
+function botaoClicked() {
+  "use strict";
+
+  startTime = new Date();
+
+  limite = parseFloat(document.getElementById("txtTempo").value);
+
+  clearInterval(temporizador);
+  temporizador = setInterval(updateTime, 1000);
+}
+
+function updateTime() {
+  "use strict";
+
+  // read the current time
+  var currentTime = new Date();
+
+  // calculate how many seconds passed since the start of the timer
+  var elapsed = (currentTime.getTime() - startTime.getTime()) / 1000;
+
+  // convert seconds to minutes and seconds (below 60)
+  var minutos = Math.floor(elapsed / 60);
+  var segundos = Math.floor(elapsed % 60);
+
+  // pad with zeroes on the left to look better
+  if (minutos < 10) {
+    minutos = "0" + minutos;
+  }
+  if (segundos < 10) {
+    segundos = "0" + segundos;
+  }
+
+  // show the elapsed time
+  document.getElementById("clock").innerHTML = minutos + ":" + segundos;
+  console.log(parseFloat(minutos) + parseFloat(segundos / 60));
+  // check if we are above the time limit and set the color of the timer accordingly
+  if (parseFloat(minutos) + parseFloat(segundos / 60) >= limite) {
+    document.getElementById("clock").className = "red";
+  } else {
+    document.getElementById("clock").className = "blue";
+  }
+
+}
+    </script>
+    <script src="clock.js"></script>
+  </body>
+</html>
