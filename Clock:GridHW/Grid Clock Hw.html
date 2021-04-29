@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSS Grid Layout</title>
+    <link href="css/page.css" rel="stylesheet">
+    <link href="css/grid.css" rel="stylesheet">
+    <style>
+     body {
+	color: #6e859c;
+	background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/652/confectionary.png);
+}
+
+.grid {
+  width: 100%;
+  height: 1100px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 0px;  
+}
+
+.item {
+  border-radius: 100%;
+  background: #6e859c;
+}
+
+a:hover {
+  opacity: 0%;
+}   
+    </style>
+  </head>
+  <body>
+    <div class ="grid" id="grid" onclick="myFunction()">
+      <a class ="item"></a>
+      <a class="item"></a>
+      <a class="item"></a>
+      <a class="item"></a>
+      <a class="item"></a>
+      <a class="item"></a>
+      <a class="item"></a>
+      <a class="item"></a>
+      <a class="item"></a>   
+    </div>
+    
+<!--     <p id="demo" onclick="myFunction()">Click me to change my text color.</p> -->
+
+<script>
+var colors = ["blue", "orange", "red", "yellow"];
+var currentColor = 0;
+
+function myFunction() {
+  var outerdiv = document.getElementById("grid")
+  var boxes = outerdiv.getElementsByTagName("a")
+  
+  for(i=0; i<boxes.length; i++) {
+    boxes[i].style.backgroundColor = colors[currentColor];
+  }
+    if (currentColor < colors.length-1) {
+      currentColor += 1
+    } else {
+      currentColor = 0
+    }
+}
+
+</script>
+    
+  </body>
+</html>
